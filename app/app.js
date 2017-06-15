@@ -24,6 +24,13 @@
                 controller: 'Account.IndexController',
                 controllerAs: 'vm',
                 data: { activeTab: 'account' }
+            })
+            .state('myteams', {
+                url: '/myteams',
+                templateUrl: 'myteams/myteams.html',
+                controller: 'MyTeams.IndexController',
+                controllerAs: 'vm',
+                data: { activeTab: 'myteams' }
             });
     }
 
