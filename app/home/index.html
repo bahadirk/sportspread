@@ -1,1 +1,67 @@
-﻿<h1>Hi {{vm.user.firstName}}!!</h1>
+﻿<h1>Search</h1>
+<div class="credits text-center">
+    <div class="row">
+        <div class="col-6 col-md-3">
+            <ul class="list-group">
+                <li class="list-group-item">Teammate</li>
+
+            </ul>
+        </div>
+        <div class="col-6 col-md-3">
+            <ul class="list-group">
+                <li class="list-group-item">Opponent</li>
+
+            </ul>
+        </div>
+        <div class="col-6 col-md-3">
+            <ul class="list-group">
+                <li class="list-group-item">Instructor</li>
+
+            </ul>
+        </div>
+
+</div>
+    <div class="credits text-center">
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <ul class="list-group">
+                    <div class="form-group">
+                        <label for="sport"></label>
+                        <input type="text" class="form-control" id="sport" placeholder="Sport, eg. Basketball">
+                    </div>
+
+                </ul>
+            </div>
+            <div class="col-6 col-md-3">
+                <ul class="list-group">
+                    <div class="form-group">
+                        <label for="location"></label>
+                        <input type="text" class="form-control" id="location" placeholder="Location, eg. Munich">
+                    </div>
+
+                </ul>
+            </div>
+            <div class="col-6 col-md-3">
+                <ul class="list-group">
+                    <div class="dropdown">
+                        <button class="dropbtn">Experience</button>
+                        <div class="dropdown-content">
+                            <a href="#">Beginner</a>
+                            <a href="#">Medium</a>
+                            <a href="#">Advanced</a>
+                            <a href="#">Professional</a>
+                        </div>
+                    </div>
+
+                </ul>
+            </div>
+            <div class="col-6 col-md-3">
+                <ul class="list-group">
+                    <a href="/app/#/searchresults" class="btn btn-primary">Search</a>
+                </ul>
+            </div>
+        </div>
+
+
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="app-content/app.css" rel="stylesheet" />
