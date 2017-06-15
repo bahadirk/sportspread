@@ -31,6 +31,12 @@
                 controller: 'MyTeams.IndexController',
                 controllerAs: 'vm',
                 data: { activeTab: 'myteams' }
+            })
+            .state('searchresults', {
+                url: '/searchresults',
+                templateUrl: 'searchresults/searchresults.html',
+                controller: 'SearchResults.IndexController',
+                controllerAs: 'vm',
             });
     }
 
