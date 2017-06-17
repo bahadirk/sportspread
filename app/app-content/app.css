@@ -5,3 +5,8 @@
 .flash-message {
     margin-top: 20px;
 }
+
+.jumbotron {
+  background-image: url("../img/basket.jpg");
+  background-size: cover;
+}
