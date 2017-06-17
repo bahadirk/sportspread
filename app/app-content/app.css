@@ -10,3 +10,20 @@
   background-image: url("../img/basket.jpg");
   background-size: cover;
 }
+
+#map {
+  width:400px;
+  height:400px;
+  background:yellow;
+  float: right;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  float: left;
+}
+
+.results {
+  float: left;
+}
