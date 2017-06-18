@@ -1,5 +1,18 @@
-﻿<h1>My Profile</h1>
-<div class="form-container">
+﻿<div id="accountpage">
+
+
+<h1 id="accounttext">My Profile </h1>
+<div class="row">
+<div class="container col-xs-6">
+    <h2>Profile Picture</h2>
+
+    <img src="img/avatar4.png" class="img-circle" alt="Cinque Terre" width="304" height="236">
+    <div class="row">
+        <button type="button" class="btn btn-primary col-xs-3" id="imagechancebutton">Change Profile Picture</button>
+    </div>
+
+</div>
+<div class="form-container col-xs-6">
     <form method="post">
         <div class="form-group">
             <label for="firstName">First name</label>
@@ -21,7 +34,6 @@
             <label for="Location">Location</label>
             <input type="text" id="location" class="form-control" ng-model="vm.user.location"/>
         </div>
-
         <h1>Interested Sports and Levels</h1>
         <h1>Level of Expertise:</h1>
         <ul>
@@ -37,5 +49,13 @@
         <div class="form-group">
             <button class="btn btn-primary" ng-click="vm.saveUser()">Save Changes</button>
         </div>
+
+
     </form>
+</div>
+
+</div>
+<div class="row">
+
+</div>
 </div>
