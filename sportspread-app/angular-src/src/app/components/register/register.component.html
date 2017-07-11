@@ -1,0 +1,10 @@
+<div class="container">
+  <form (submit)="onRegisterSubmit()" class="form-signin">
+    <h2 class="form-signin-heading">Please register</h2>
+    <input placeholder="Name" [(ngModel)]="name" name="name" type="text" class="form-control">
+    <input placeholder="Username" [(ngModel)]="username" name="username" type="text" class="form-control">
+    <input placeholder="Email" [(ngModel)]="email" name="email" type="email" class="form-control">
+    <input [(ngModel)]="password" name="password" type="password" placeholder="Password" class="form-control" required="">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+  </form>
+</div>
