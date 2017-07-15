@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { ValidateService } from '../../services/validate.service';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import {  FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -11,28 +12,70 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class ProfileComponent implements OnInit {
   user: any;
-
+  myForm: FormGroup;
   name: String;
-  username: String;
-  email: String;
-  password: String;
-  location: String;
-  interests: any;
+  interests = [
+      {
+      "name": "basketball",
+      "level": "medium"
+      },
+      {
+        "name": "football",
+        "level": "advanced"
+      }
+    ];
 
   constructor(private authService: AuthService,
               private router: Router,
               private validateService: ValidateService,
-              private flashMessagesModule: FlashMessagesService
+              private flashMessagesModule: FlashMessagesService,
+              private fb: FormBuilder
   ) { }
 
   ngOnInit() {
+    let newForm = this.fb.group({
+      appearsOnce: ['InitialValue'],
+      formArray: this.fb.array([])
+    });
+
+    const arrayControl = <FormArray>newForm.controls['formArray'];
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user;
+
+      this.user.interests.forEach(item => {
+        let newGroup = this.fb.group({
+          name: [item.name, [Validators.required]],
+          level: [item.level, [Validators.required]]
+        });
+        arrayControl.push(newGroup);
+      });
+
+      this.myForm = newForm;
     },
     err => {
       console.log(err);
       return false;
     });
+
+
+  }
+
+  addInput(): void {
+    const arrayControl = <FormArray>this.myForm.controls['formArray'];
+    let newGroup = this.fb.group({
+      // Fill this in identically to the one in ngOnInit
+    });
+    arrayControl.push(newGroup);
+  }
+  deleteInput(index: number): void {
+    const arrayControl = <FormArray>this.myForm.controls['formArray'];
+    arrayControl.removeAt(index);
+  }
+
+  onSubmit(): void {
+    console.log(this.myForm.value);
+    // Your form value is outputted as a JavaScript object.
+    // Parse it as JSON or take the values necessary to use as you like
   }
 
   onProfileSubmit(){

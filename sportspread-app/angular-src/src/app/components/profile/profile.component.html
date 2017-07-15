@@ -10,24 +10,25 @@
         <input placeholder="Email" [(ngModel)]="user.email" name="email" type="email" class="form-control">
         <input [(ngModel)]="user.password" name="password" type="password" placeholder="Password" class="form-control" required="">
         <input placeholder="Location" [(ngModel)]="user.location" name="location" type="text" class="form-control">
-        <div *ngFor="let interest of user.interests">
-          <input placeholder="Interest" [(ngModel)]="interest.name" name="interestname" type="text" class="form-control">
-        <div class="input-group col-xs-3">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Experience <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <li><a href="#">Beginner</a></li>
-            <li><a href="#">Medium</a></li>
-            <li><a href="#">Advanced</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Professional</a></li>
-          </ul>
-        </div>
-      </div>
+
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
+          <div formArrayName="formArray">
+            <div *ngFor="let control of myForm.controls['formArray'].controls; let i = index">
+              <button type="button" (click)="deleteInput(i)">Delete</button>
+              <app-interest [myForm]="myForm.controls.formArray.controls[i]"></app-interest>
+            </div>
+          </div>
+          <button type="button" (click)="addInput()">Add</button>
+          <!--<button type="submit" [disabled]="!myForm.valid">Save</button>-->
+        </form>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
       </form>
     </div>
   </div>
 </div>
+
+
+
+
+
