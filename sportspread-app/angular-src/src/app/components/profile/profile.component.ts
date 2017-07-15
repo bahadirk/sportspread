@@ -56,14 +56,14 @@ export class ProfileComponent implements OnInit {
       console.log(err);
       return false;
     });
-
-
   }
 
   addInput(): void {
     const arrayControl = <FormArray>this.myForm.controls['formArray'];
     let newGroup = this.fb.group({
       // Fill this in identically to the one in ngOnInit
+      name: ["", [Validators.required]],
+      level: ["", [Validators.required]]
     });
     arrayControl.push(newGroup);
   }
@@ -79,6 +79,10 @@ export class ProfileComponent implements OnInit {
   }
 
   onProfileSubmit(){
+    this.user.interests = [];
+    this.myForm.value.formArray.forEach(item => {
+      this.user.interests.push(item);
+    });
 
     // Required Fields
     if(!this.validateService.validateRegister(this.user)) {
