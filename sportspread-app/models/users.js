@@ -68,14 +68,20 @@ module.exports.comparePassword = function(candidatePassword, hash, callback) {
 }
 
 module.exports.updateUser = function(updatedUser, callback) {
-    User.update({ "_id": updatedUser._id }, { $set:
-        {
-            name: updatedUser.name,
-            username: updatedUser.username,
-            email: updatedUser.email,
-            password: updatedUser.password,
-            location: updatedUser.location,
-            interests: updatedUser.interests
-        }
-    }, callback);
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(updatedUser.password, salt, (err, hash) => {
+            if(err) throw err;
+            updatedUser.password = hash;
+            User.update({ "_id": updatedUser._id }, { $set:
+                {
+                    name: updatedUser.name,
+                    username: updatedUser.username,
+                    email: updatedUser.email,
+                    password: updatedUser.password,
+                    location: updatedUser.location,
+                    interests: updatedUser.interests
+                }
+            }, callback);
+        })
+    });
 }
