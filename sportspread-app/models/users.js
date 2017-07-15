@@ -77,9 +77,5 @@ module.exports.updateUser = function(updatedUser, callback) {
             location: updatedUser.location,
             interests: updatedUser.interests
         }
-    }, function(error, result){
-        if(error){
-            throw new console.log(error);
-        }
-    });
+    }, callback);
 }

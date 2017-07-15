@@ -19,14 +19,12 @@
     </div>
 
     <form (submit)="onSearch()">
-      <div class="row">
+      <div class="row" id="searchInput">
         <div class="form-group col-xs-3">
-          <label for="sport"></label>
           <input [(ngModel)]="sport_name" name="sport_name" type="text" class="form-control" id="sport_name" placeholder="Sport, eg. Basketball">
         </div>
 
         <div class="form-group col-xs-3">
-          <label for="location"></label>
           <input type="text" class="form-control" id="location" placeholder="Location, eg. Munich">
         </div>
 

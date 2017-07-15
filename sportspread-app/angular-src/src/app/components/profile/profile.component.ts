@@ -100,7 +100,6 @@ export class ProfileComponent implements OnInit {
     this.authService.updateProfile(this.user).subscribe(data => {
       if(data.success) {
         this.flashMessagesModule.show('You have updated your profile.', {cssClass: 'alert-success', timeout: 3000});
-        this.router.navigate(['/profile']);
       } else {
         this.flashMessagesModule.show('Something went wrong. Please try again later.', {cssClass: 'alert-danger', timeout: 3000});
       }
