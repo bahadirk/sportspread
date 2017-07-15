@@ -29,8 +29,7 @@ const UserSchema = mongoose.Schema({
             required: true
         },
         level:{
-            type: String,
-            required: true
+            type: String
         }
     }
   ]
