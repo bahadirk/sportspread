@@ -63,3 +63,18 @@ module.exports.comparePassword = function(candidatePassword, hash, callback) {
         callback(null, isMatch);
     });
 }
+
+module.exports.updateUser = function(updatedUser, callback) {
+    User.update({ "_id": updatedUser._id }, { $set:
+        {
+            name: updatedUser.name,
+            username: updatedUser.username,
+            email: updatedUser.email,
+            password: updatedUser.password
+        }
+    }, function(error, result){
+        if(error){
+            throw new console.log(error);
+        }
+    });
+}
