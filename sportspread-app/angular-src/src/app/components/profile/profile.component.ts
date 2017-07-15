@@ -11,19 +11,10 @@ import {  FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  password: String;
+  passwordRepeat: String;
   user: any;
   myForm: FormGroup;
-  name: String;
-  interests = [
-      {
-      "name": "basketball",
-      "level": "medium"
-      },
-      {
-        "name": "football",
-        "level": "advanced"
-      }
-    ];
 
   constructor(private authService: AuthService,
               private router: Router,
@@ -83,6 +74,15 @@ export class ProfileComponent implements OnInit {
     this.myForm.value.formArray.forEach(item => {
       this.user.interests.push(item);
     });
+
+    if(this.password != undefined || this.passwordRepeat != undefined) {
+      if(this.password == this.passwordRepeat) {
+        this.user.password = this.password;
+      } else {
+        this.flashMessagesModule.show("Passwords do not match.", {cssClass: 'alert-danger', timeout: 3000});
+        return false;
+      }
+    }
 
     // Required Fields
     if(!this.validateService.validateRegister(this.user)) {
