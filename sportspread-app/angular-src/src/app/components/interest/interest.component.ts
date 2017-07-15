@@ -9,7 +9,7 @@ import { FormGroup } from '@angular/forms';
 export class InterestComponent implements OnInit {
   @Input() myForm: FormGroup;
   constructor() { }
-
+  
   ngOnInit() {
   }
 
