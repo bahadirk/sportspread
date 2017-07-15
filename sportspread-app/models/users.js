@@ -42,8 +42,8 @@ module.exports.getUserById = function(id, callback) {
     User.findById(id, callback);
 }
 
-module.exports.findUserBySearch = function(sport_name, callback) {
-   User.find();
+module.exports.findUserBySearch = function(sport_name) {
+   return User.find(callback).fetch();
 }
 
 module.exports.getUserByUsername = function(username, callback) {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-home',
@@ -8,18 +10,25 @@ import { Component, OnInit } from '@angular/core';
 
 
 export class HomeComponent implements OnInit {
-
+ 
   sport_name : String;
+ 
 
-  constructor() { }
+  constructor(private searchService: SearchService,
+              private router: Router,
+  ) { }
 
   ngOnInit() {
   }
 
   onSearch(){
+    console.log(123);
+    
     const search = {
-      sport_name: this.sport_name,
+        sport_name: this.sport_name,
     }
+     
+    this.searchService.findUsers(search);
+    this.router.navigate(['/search']);
   }
-
 }
