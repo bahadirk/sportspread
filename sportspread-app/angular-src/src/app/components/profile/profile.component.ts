@@ -16,6 +16,8 @@ export class ProfileComponent implements OnInit {
   username: String;
   email: String;
   password: String;
+  location: String;
+  interests: any;
 
   constructor(private authService: AuthService,
               private router: Router,

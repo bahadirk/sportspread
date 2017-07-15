@@ -7,6 +7,9 @@ const UserSchema = mongoose.Schema({
     name: {
         type: String
     },
+    location: {
+        type: String
+    },
     email: {
         type: String,
         required: true
@@ -18,9 +21,6 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
-    },
-    location: {
-    type: String
     },
     interests:[
     {
@@ -74,7 +74,8 @@ module.exports.updateUser = function(updatedUser, callback) {
             name: updatedUser.name,
             username: updatedUser.username,
             email: updatedUser.email,
-            password: updatedUser.password
+            password: updatedUser.password,
+            location: updatedUser.location
         }
     }, function(error, result){
         if(error){
