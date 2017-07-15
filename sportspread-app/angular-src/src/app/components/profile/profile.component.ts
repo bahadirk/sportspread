@@ -12,6 +12,11 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 export class ProfileComponent implements OnInit {
   user: any;
 
+  name: String;
+  username: String;
+  email: String;
+  password: String;
+
   constructor(private authService: AuthService,
               private router: Router,
               private validateService: ValidateService,
