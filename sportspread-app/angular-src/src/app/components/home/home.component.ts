@@ -10,9 +10,11 @@ import { SearchService } from '../../services/search.service';
 
 
 export class HomeComponent implements OnInit {
- 
+
   sport_name : String;
- 
+  location: String;
+  experience: String;
+  searchType = "teammate";
 
   constructor(private searchService: SearchService,
               private router: Router,
@@ -21,14 +23,26 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSearch(){
-    console.log(123);
-    
+  changeSearchType(type) {
+    this.searchType = type;
+  }
+
+  onSearchSubmit(){
     const search = {
         sport_name: this.sport_name,
+        experience: this.experience,
+        location: this.location
     }
-     
-    this.searchService.findUsers(search);
-    this.router.navigate(['/search']);
+
+
+    this.searchService.findOpponents(search).subscribe(data => {
+      if(data.success) {
+        console.log(data.users);
+        this.router.navigate(['/search']);
+      } else {
+        console.log('Something went wrong. Please try again later.');
+      }
+    });
+
   }
 }

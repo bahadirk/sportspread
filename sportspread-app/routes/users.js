@@ -83,4 +83,16 @@ router.post('/editprofile', passport.authenticate('jwt', {session: false}), (req
     });
 });
 
+//Search
+router.post('/opponents', (req, res, next) => {
+    console.log(req.body);
+    User.findOpponentsBySearch(req.body, (err, users) => {
+        if(err) {
+            res.json({success: false, msg: 'Something went wrong in search.'});
+        } else {
+            res.json({success:true, users: users});
+        }
+    });
+});
+
 module.exports = router;

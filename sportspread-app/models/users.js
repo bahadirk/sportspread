@@ -29,7 +29,8 @@ const UserSchema = mongoose.Schema({
             required: true
         },
         level:{
-            type: String
+            type: String,
+            required: true
         }
     }
   ]
@@ -41,12 +42,22 @@ module.exports.getUserById = function(id, callback) {
     User.findById(id, callback);
 }
 
-module.exports.findUserBySearch = function(sport_name) {
-   return User.find(callback).fetch();
+module.exports.findOpponentsBySearch = function(search, callback) {
+    const query = {
+        location: search.location,
+        interests: {
+            $elemMatch: {
+                name: search.sport_name,
+                level: search.experience
+            }
+        }
+    };
+    console.log(query);
+    User.find(query, callback);
 }
 
 module.exports.getUserByUsername = function(username, callback) {
-    const query = {username: username}
+    const query = {username: username};
     User.findOne(query, callback);
 }
 

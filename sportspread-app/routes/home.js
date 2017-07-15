@@ -7,16 +7,13 @@ const config = require('../config/database');
 const User = require('../models/users');
 
 //Search 
-router.post('/search', (req, res, next) => {
-    
-    "use strict";
-    let sport_name = req.body.sport_name
-
-    User.findUserBySearch(sport_name, (err, users) => {
+router.post('/opponents', (req, res, next) => {
+    console.log(req.body);
+    User.findOpponentsBySearch(req.body, (err, users) => {
         if(err) {
-            res.json({success: false, msg: 'Something went wrong about seach'});
+            res.json({success: false, msg: 'Something went wrong in search.'});
         } else {
-            res.json({users: req.user});
+            res.json({success:true, users: users});
         }
     });
 
