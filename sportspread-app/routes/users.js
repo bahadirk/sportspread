@@ -26,22 +26,6 @@ router.post('/register', (req, res, next) => {
     });
 });
 
-//Search 
-router.post('/search', (req, res, next) => {
-    
-    "use strict";
-    let sport_name = req.body.sport_name
-
-    User.findUserBySearch(sport_name, (err) => {
-        if(err) {
-            res.json({success: false, msg: 'Something went wrong about seach'});
-        } else {
-            res.json({user: req.user});
-        }
-    });
-});
-
-
 
 // Authenticate
 router.post('/authenticate', (req, res, next) => {
