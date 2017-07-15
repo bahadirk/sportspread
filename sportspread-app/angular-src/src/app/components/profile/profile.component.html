@@ -1,7 +1,16 @@
-<div *ngIf="user">
-  <h2 class="page-header">{{ user.name }}</h2>
-  <ul class="list-group">
-    <li clas="list-group-item">Username: {{ user.username }}</li>
-    <li clas="list-group-item">Email: {{ user.email }}</li>
-  </ul>
+<div *ngIf="user" class="fb-profile">
+  <img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
+  <img align="left" class="fb-image-profile thumbnail" src="http://lorempixel.com/180/180/people/9/" alt="Profile image example"/>
+  <div class="fb-profile-text">
+    <div class="container">
+      <form (submit)="onProfileSubmit()" class="form-signin">
+        <h2 class="form-signin-heading">{{ user.name }}</h2>
+        <input placeholder="Name" [(ngModel)]="user.name" name="name" type="text" class="form-control">
+        <input placeholder="Username" [(ngModel)]="user.username" name="username" type="text" class="form-control">
+        <input placeholder="Email" [(ngModel)]="user.email" name="email" type="email" class="form-control">
+        <input [(ngModel)]="user.password" name="password" type="password" placeholder="Password" class="form-control" required="">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+      </form>
+    </div>
+  </div>
 </div>

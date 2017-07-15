@@ -21,7 +21,7 @@ router.post('/register', (req, res, next) => {
         if(err) {
             res.json({success: false, msg: 'Failed to register user'});
         } else {
-            res.json({success: true, msg: 'User register'});
+            res.json({success: true, msg: 'User registered'});
         }
     });
 });
@@ -86,6 +86,17 @@ router.post('/authenticate', (req, res, next) => {
 // Profile
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
     res.json({user: req.user});
+});
+
+// Update Profile
+router.post('/editprofile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    User.updateUser(req.body, (err) => {
+        if(err) {
+            res.json({success: false, msg: 'Failed to update user'});
+        } else {
+            res.json({success: true, msg: 'User updated'});
+        }
+    });
 });
 
 module.exports = router;
