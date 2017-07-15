@@ -74,7 +74,8 @@ module.exports.updateUser = function(updatedUser, callback) {
             username: updatedUser.username,
             email: updatedUser.email,
             password: updatedUser.password,
-            location: updatedUser.location
+            location: updatedUser.location,
+            interests: updatedUser.interests
         }
     }, function(error, result){
         if(error){
