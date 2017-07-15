@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -50,7 +51,10 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    FlashMessagesModule
+    FlashMessagesModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyB5oqtbEdUtP1TmVDXf3PWEwUh05x7R6uc'
+    })
   ],
   providers: [ValidateService, AuthService, AuthGuard, SearchService],
   bootstrap: [AppComponent]

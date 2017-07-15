@@ -9,13 +9,14 @@ import { Component, OnInit } from '@angular/core';
 
 export class SearchResultComponent implements OnInit {
 
-
+  lat: number = 51.678418;
+  lng: number = 7.809007;
 
   constructor() { }
 
   ngOnInit() {
   }
 
- 
+
 
 }
