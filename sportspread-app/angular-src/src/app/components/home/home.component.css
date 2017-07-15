@@ -8,6 +8,7 @@ body {
 
 .jumbotron {
   background-size: cover;
+  background-image: url(" /assets/images/basket.jpg");
 }
 
 #map {
