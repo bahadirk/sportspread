@@ -1,0 +1,30 @@
+<div class="fb-profile">
+  <img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
+  <img align="left" class="fb-image-profile thumbnail" src="http://lorempixel.com/180/180/people/9/" alt="Profile image example"/>
+  <div class="fb-profile-text">
+    <div class="container">
+
+
+
+      <form (submit)="onProfileSubmit()" class="form-signin">
+        <h2 class="form-signin-heading">{{ team.teamname }}</h2>
+      <input placeholder="Name" [(ngModel)]="team.teamname" name="teamname" type="text" class="form-control">-->
+        <input [(ngModel)]="password" name="password" type="password" placeholder="New Password" class="form-control" required="">
+        <input [(ngModel)]="passwordRepeat" name="password" type="password" placeholder="Repeat Password" class="form-control" required="">
+        <input placeholder="Location" [(ngModel)]="team.location" name="location" type="text" class="form-control">
+ <!--
+         <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
+           <div class="side" formArrayName="formArray">
+             <div class="side" *ngFor="let control of myForm.controls['formArray'].controls; let i = index">
+               <app-interest class="side" [myForm]="myForm.controls.formArray.controls[i]"></app-interest>
+               <button class="rightside btn btn-danger" type="button" (click)="deleteInput(i)">Delete</button>
+             </div>
+           </div>
+           <button type="button" class="btn btn-primary" (click)="addInput()">Add Member</button>
+         </form>
+ -->
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+
+      </form>
+    </div>
+  </div>

@@ -17,7 +17,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="authService.isLoggedIn()"><a [routerLink]="['/dashboard']">Dashboard</a></li>
-        <li *ngIf="authService.isLoggedIn()"><a [routerLink]="['/profile']">Profile</a></li>
+        <li *ngIf="authService.isLoggedIn() && type_account!=='team'"><a [routerLink]="['/profile']">My Profile</a></li>
+        <li *ngIf="authService.isLoggedIn() && type_account==='team'"><a [routerLink]="['/teamprofile']">Team Profile</a></li>
         <li *ngIf="!authService.isLoggedIn()"><a [routerLink]="['/login']">Sign In</a></li>
         <li *ngIf="!authService.isLoggedIn()"><a [routerLink]="['/register']">Register</a></li>
         <li *ngIf="authService.isLoggedIn()"><a (click)="onLogoutClick()" href="#">Logout</a></li>

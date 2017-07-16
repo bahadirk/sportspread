@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.type_account = localStorage.getItem('profile');
-    this.type_account = JSON.parse(this.type_account);
+    this.type_account = JSON.parse(this.type_account).type_account;
   }
 
   changeSearchType(type) {
@@ -31,6 +31,6 @@ export class HomeComponent implements OnInit {
   }
 
   onSearchSubmit() {
-    this.router.navigate(['/search', this.searchType, this.sport_name, this.location, this.experience]);
+    this.router.navigate(['/search',this.type_account, this.searchType, this.sport_name, this.location, this.experience]);
   }
 }

@@ -48,12 +48,30 @@ export class AuthService {
       .map(res => res.json());
   }
 
+  getTeamProfile() {
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:3000/users/teamprofile', {headers: headers})
+      .map(res => res.json());
+  }
+
   updateProfile(user) {
     let headers = new Headers();
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
     return this.http.post('http://localhost:3000/users/editprofile', user, {headers: headers})
+      .map(res => res.json());
+  }
+
+  updateTeamProfile(team) {
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/users/editteamprofile', team, {headers: headers})
       .map(res => res.json());
   }
 

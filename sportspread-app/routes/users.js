@@ -139,29 +139,35 @@ router.post('/authenticate', (req, res, next) => {
 
 // Profile
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    console.log("USER" + req.user);
     res.json({user: req.user});
+});
+
+
+router.get('/teamprofile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    res.json({team: req.user});
 });
 
 // Update Profile
 router.post('/editprofile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
 
-    var path = '';
-/*
-    upload(req, res, function (err) {
-        if (err) {
-            // An error occurred when uploading
-            console.log(err);
-            return res.status(422).send("an Error occured")
-        }
-        // No error occured.
-        path = req.file.path;
-    });
-*/
     User.updateUser(req.body, (err) => {
         if(err) {
             res.json({success: false, msg: 'Failed to update user'});
         } else {
             res.json({success: true, msg: 'User updated'});
+        }
+    });
+});
+
+// Update Team Profile
+router.post('/editteamprofile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+
+    Team.updateTeam(req.body, (err) => {
+        if(err) {
+            res.json({success: false, msg: 'Failed to update team'});
+        } else {
+            res.json({success: true, msg: 'Team updated'});
         }
     });
 });
@@ -202,6 +208,18 @@ router.post('/instructors', (req, res, next) => {
         }
     });
 });
+
+router.post('/opponentteam', (req, res, next) => {
+    console.log(req.body);
+    Team.findOpponentBySearch(req.body, (err, users) => {
+        if(err) {
+            res.json({success: false, msg: 'Something went wrong in search.'});
+        } else {
+            res.json({success:true, users: users});
+        }
+    });
+});
+
 
 
 module.exports = router;

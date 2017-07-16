@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   level: String;
   name: String;
   username: String;
+  teamname: String;
   email: String;
   password: String;
   accountType = "Personal";
@@ -78,7 +79,7 @@ export class RegisterComponent implements OnInit {
       case "Team": {
         const team = {
           sport_name: this.sport_name,
-          teamname: this.username,
+          teamname: this.teamname,
           level: this.level,
           password: this.password,
           users: []

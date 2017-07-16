@@ -23,6 +23,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
 import { InterestComponent } from './components/interest/interest.component';
 import { UserCellComponent } from './components/user-cell/user-cell.component';
+import { TeamProfileComponent } from './components/team-profile/team-profile.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
-  {path: 'search/:searchType/:sport/:location/:experience', component: SearchResultComponent}
+  {path: 'teamprofile', component: TeamProfileComponent, canActivate:[AuthGuard]},
+  {path: 'search/:type_account/:searchType/:sport/:location/:experience', component: SearchResultComponent}
 ];
 
 @NgModule({
@@ -47,7 +49,8 @@ const appRoutes: Routes = [
     SearchResultComponent,
     InterestComponent,
     FileSelectDirective,
-    UserCellComponent
+    UserCellComponent,
+    TeamProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -14,7 +14,7 @@ export class ValidateService {
   }
 
   validateTeamRegister(team){
-    if(team.name == undefined || team.username == undefined || team.email == undefined || team.password == undefined) {
+    if(team.name == undefined ||  team.password == undefined) {
       return false;
     } else {
       return true;

@@ -12,6 +12,10 @@ const TeamSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    level: {
+        type: String,
+        required: true
+    },
     type_account: {
         type: String
     },
@@ -32,6 +36,10 @@ const TeamSchema = mongoose.Schema({
 });
 
 const Team = module.exports = mongoose.model('Team', TeamSchema);
+
+module.exports.getTeamById = function(id, callback) {
+    Team.findById(id, callback);
+}
 
 module.exports.addTeam = function(newTeam, callback) {
     bcrypt.genSalt(10, (err, salt) => {
@@ -55,6 +63,18 @@ module.exports.comparePassword = function(candidatePassword, hash, callback) {
     });
 }
 
+
+module.exports.findOpponentBySearch = function(search, callback) {
+    const query = {
+        location: search.location,
+        sport_name: search.sport_name,
+        level: search.experience
+    };
+    console.log(query);
+    User.find(query, callback);
+}
+
+
 module.exports.updateTeam = function(updatedTeam, callback) {
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(updatedTeam.password, salt, (err, hash) => {
@@ -62,11 +82,9 @@ module.exports.updateTeam = function(updatedTeam, callback) {
             updatedTeam.password = hash;
             Team.update({ "_id": updatedTeam._id }, { $set:
                 {
-                    name: updatedTeam.name,
                     teamname: updatedTeam.teamname,
                     password: updatedTeam.password,
                     location: updatedTeam.location,
-                    members: updatedTeam.members
                 }
             }, callback);
         })

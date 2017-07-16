@@ -10,12 +10,15 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class NavbarComponent implements OnInit {
 
+  type_account: any;
   constructor(private authService: AuthService,
               private router: Router,
               private flashMessagesModule: FlashMessagesService
   ) { }
 
   ngOnInit() {
+    this.type_account = localStorage.getItem('profile');
+    this.type_account = JSON.parse(this.type_account).type_account;
   }
 
   onLogoutClick() {
