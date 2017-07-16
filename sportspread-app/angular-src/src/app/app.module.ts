@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule, Jsonp, Response } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
 
@@ -16,6 +16,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SearchResultComponent } from './components/search-result/search-result.component'
 
 import { ValidateService } from './services/validate.service';
+import { DataService } from './services/data.service';
 import { SearchService } from './services/search.service';
 import { AuthService } from './services/auth.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
@@ -50,13 +51,15 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    JsonpModule,
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyB5oqtbEdUtP1TmVDXf3PWEwUh05x7R6uc'
+      apiKey: 'AIzaSyB5oqtbEdUtP1TmVDXf3PWEwUh05x7R6uc',
+      libraries: ["places"]
     })
   ],
-  providers: [ValidateService, AuthService, AuthGuard, SearchService],
+  providers: [ValidateService, AuthService, AuthGuard, SearchService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

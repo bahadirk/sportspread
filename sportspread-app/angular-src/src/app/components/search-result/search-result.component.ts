@@ -1,4 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, NgModule, ViewChild, NgZone, ElementRef} from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+import {} from '@types/googlemaps';
+declare var google: any;
 
 @Component({
   selector: 'app-search-result',
@@ -8,18 +13,47 @@ import { Component, OnInit, Input } from '@angular/core';
 
 
 export class SearchResultComponent implements OnInit {
+   public latitude: number;
+   public longitude: number;
+   public searchControl: FormControl;
+   public zoom: number;
 
-  @Input() users: any[];
+   @ViewChild("search")
+   public searchElementRef: ElementRef;
 
-  lat: number = 51.678418;
-  lng: number = 7.809007;
-
-  constructor() { }
+   constructor(
+     private mapsAPILoader: MapsAPILoader,
+     private ngZone: NgZone
+   ) {}
 
   ngOnInit() {
-    console.log(this.users);
-  }
+    this.zoom = 4;
+    this.latitude = 39.8282;
+    this.longitude = -98.5795;
+
+    this.searchControl = new FormControl();
+
+    this.mapsAPILoader.load().then(() => {
+         let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+           types: ["address"]
+         });
+         autocomplete.addListener("place_changed", () => {
+                  this.ngZone.run(() => {
+                    //get the place result
+                    let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+                    //verify result
+                    if (place.geometry === undefined || place.geometry === null) {
+                      return;
+                    }
+                    this.latitude = place.geometry.location.lat();
+                               this.longitude = place.geometry.location.lng();
+                               this.zoom = 12;
+        });
+      });
+    });
 
 
 
+}
 }
