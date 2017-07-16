@@ -45,6 +45,17 @@ export class SearchResultComponent implements OnInit {
            });
            break;
          }
+         case "Instructor": {
+           this.searchService.findTeamInstructor(search).subscribe(data => {
+             if (data.success) {
+               console.log(data);
+               this.users = data.users;
+             } else {
+               console.log('Something went wrong. Please try again later.');
+             }
+           });
+           break;
+         }
        }
 
      }else{

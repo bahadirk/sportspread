@@ -86,7 +86,7 @@ module.exports.findInstructorsBySearch = function(search, callback) {
         is_instructor: true,
         sports_prof: search.sport_name,
     };
-    console.log(query);
+    console.log("QUERY " + query);
     User.find(query, callback);
 }
 

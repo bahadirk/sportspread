@@ -209,6 +209,20 @@ router.post('/instructors', (req, res, next) => {
     });
 });
 
+
+//Search Instructors
+router.post('/teaminstructors', (req, res, next) => {
+    console.log(req.body);
+    User.findInstructorsBySearch(req.body, (err, users) => {
+        if(err) {
+            res.json({success: false, msg: 'Something went wrong in search.'});
+        } else {
+            res.json({success:true, users: users});
+        }
+    });
+});
+
+
 router.post('/opponentteam', (req, res, next) => {
     console.log("OPPON Te" +req.body);
     Team.findOpponentBySearch(req.body, (err, users) => {
@@ -219,6 +233,7 @@ router.post('/opponentteam', (req, res, next) => {
         }
     });
 });
+
 
 
 
