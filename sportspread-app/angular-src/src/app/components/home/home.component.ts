@@ -50,6 +50,11 @@ export class HomeComponent implements OnInit {
       }
     });
 
+    const sport = this.sport_name;
+    const location = this.location;
+    const experience = this.experience;
+    this.router.navigate(['/search', sport, experience, location]);
+
   } else if(this.searchType === "venue") {
     console.log(this.searchType);
     const search = {
