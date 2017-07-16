@@ -23,6 +23,9 @@
     <input placeholder="Username" [(ngModel)]="username" name="username" type="text" class="form-control">
     <input placeholder="Email" *ngIf="accountType === 'Personal'" [(ngModel)]="email" name="email" type="email" class="form-control">
     <input [(ngModel)]="password" name="password" type="password" placeholder="Password" class="form-control" required="">
+    <div class="row">
+      <input type="checkbox"[(ngModel)]="instructor" name="instructor" value="instructor">I am a sports instructor!<input *ngIf="instructor" [(ngModel)]="sports_prof" name="sports_prof" type="text" placeholder="Sports Speciality" class="form-control">
+    </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
   </form>
 </div>

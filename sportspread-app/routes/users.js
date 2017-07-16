@@ -82,6 +82,8 @@ router.post('/register', (req, res, next) => {
         email: req.body.email,
         username: req.body.username,
         password: req.body.password,
+        is_instructor: req.body.is_instructor,
+        sports_prof: req.body.sports_prof,
         type_account: "user"
     });
 

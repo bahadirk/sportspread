@@ -24,6 +24,9 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    sports_prof:{
+        type:String,
+    },
     password: {
         type: String,
         required: true

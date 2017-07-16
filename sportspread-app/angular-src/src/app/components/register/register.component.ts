@@ -18,6 +18,8 @@ export class RegisterComponent implements OnInit {
   email: String;
   password: String;
   accountType = "Personal";
+  instructor;
+  sports_prof;
 
   constructor(private validateService: ValidateService,
               private authService: AuthService,
@@ -34,13 +36,20 @@ export class RegisterComponent implements OnInit {
 
   onRegisterSubmit(){
 
+    const user = {
+      name: this.name,
+      username: this.username,
+      email: this.email,
+      password: this.password,
+      is_instructor: "",
+      sports_prof: ""
+    }
+
     switch(this.accountType) {
       case "Personal": {
-        const user = {
-          name: this.name,
-          username: this.username,
-          email: this.email,
-          password: this.password
+        if(this.instructor) {
+         user.is_instructor = this.instructor;
+         user.sports_prof = this.sports_prof
         }
 
         // Required Fields
