@@ -31,6 +31,11 @@ export class HomeComponent implements OnInit {
   }
 
   onSearchSubmit() {
+    if(this.type_account) {
+      console.log("existing type");
+    } else {
+      this.type_account = "personal";
+    }
     this.router.navigate(['/search',this.type_account, this.searchType, this.sport_name, this.location, this.experience]);
   }
 }

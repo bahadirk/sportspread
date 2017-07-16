@@ -123,11 +123,11 @@ export class SearchResultComponent implements OnInit {
   }
 
   onAddMember(item){
-     if(this.team.members) {
-       this.team.members.push(item);
+     if(this.team.members.User) {
+       this.team.members.User.push(item);
      } else {
-       this.team.members = [];
-       this.team.members.push(item);
+       this.team.members.User = [];
+       this.team.members.User.push(item);
      }
     console.log(this.team);
     // Update Team

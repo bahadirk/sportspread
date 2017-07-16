@@ -39,7 +39,7 @@ export class TeamProfileComponent implements OnInit {
         this.team = profile.team;
   console.log(this.team);
 
-        this.team.members.forEach(item => {
+        this.team.members.User.forEach(item => {
           let newGroup = this.fb.group({
             name: [item.name, [Validators.required]],
             email: [item.email, [Validators.required]]
@@ -66,10 +66,10 @@ export class TeamProfileComponent implements OnInit {
   }
 
   onProfileSubmit(){
-    this.team.members = [];
+    this.team.members.User = [];
 
     this.myForm.value.formArray.forEach(item => {
-      this.team.members.push(item);
+      this.team.members.User.push(item);
     });
 
     if(this.password != undefined || this.passwordRepeat != undefined) {
