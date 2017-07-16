@@ -76,6 +76,7 @@ module.exports.findOpponentBySearch = function(search, callback) {
 
 
 module.exports.updateTeam = function(updatedTeam, callback) {
+    console.log("PASSS" + updatedTeam.teamname);
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(updatedTeam.password, salt, (err, hash) => {
             if(err) throw err;
@@ -85,6 +86,7 @@ module.exports.updateTeam = function(updatedTeam, callback) {
                     teamname: updatedTeam.teamname,
                     password: updatedTeam.password,
                     location: updatedTeam.location,
+                    members: updatedTeam.members
                 }
             }, callback);
         })

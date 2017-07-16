@@ -1,1 +1,6 @@
-<app-user-cell *ngFor="let user of users" [user]="user"></app-user-cell>
+<!--<form (submit)="onAddMember()" class="form-signin">-->
+  <div *ngFor="let user of users">
+    <app-user-cell [user]="user"></app-user-cell>
+    <button *ngIf="searchType === 'Teammate'" class="btn btn-lg btn-primary btn-block" (click)="onAddMember(user)" type="submit">Add as a Member</button>
+  </div><!--
+</form>-->
