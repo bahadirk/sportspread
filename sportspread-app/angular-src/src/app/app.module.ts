@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule, Jsonp, Response } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
   //{path: 'search', component: SearchResultComponent, canActivate:[AuthGuard]}
+
   {
     path: 'search/:sport/:location/:experience',
     component: SearchResultComponent
@@ -48,7 +50,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     FooterComponent,
     SearchResultComponent,
-    InterestComponent
+    InterestComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
