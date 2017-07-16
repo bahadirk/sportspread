@@ -7,6 +7,14 @@ const UserSchema = mongoose.Schema({
     name: {
         type: String
     },
+    type_account: {
+        type: String,
+        required: true
+    },
+    is_instructor: {
+        type: Boolean,
+        required: true
+    },
     location: {
         type: String
     },
