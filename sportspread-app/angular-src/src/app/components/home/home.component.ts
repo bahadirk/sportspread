@@ -28,21 +28,10 @@ export class HomeComponent implements OnInit {
   }
 
   onSearchSubmit(){
-    const search = {
-        sport_name: this.sport_name,
-        experience: this.experience,
-        location: this.location
-    }
-
-
-    this.searchService.findOpponents(search).subscribe(data => {
-      if(data.success) {
-        console.log(data.users);
-        this.router.navigate(['/search']);
-      } else {
-        console.log('Something went wrong. Please try again later.');
-      }
-    });
+    const sport = this.sport_name;
+    const location = this.location;
+    const experience = this.experience;
+    this.router.navigate(['/search', sport, experience, location]);
 
   }
 }

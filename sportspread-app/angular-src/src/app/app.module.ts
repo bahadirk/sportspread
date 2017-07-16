@@ -29,7 +29,11 @@ const appRoutes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
-  {path: 'search', component: SearchResultComponent, canActivate:[AuthGuard]}
+  //{path: 'search', component: SearchResultComponent, canActivate:[AuthGuard]}
+  {
+    path: 'search/:sport/:location/:experience',
+    component: SearchResultComponent
+  }
 ];
 
 @NgModule({

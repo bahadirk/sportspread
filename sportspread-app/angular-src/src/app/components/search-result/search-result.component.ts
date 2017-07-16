@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-search-result',
@@ -9,17 +11,30 @@ import { Component, OnInit, Input } from '@angular/core';
 
 export class SearchResultComponent implements OnInit {
 
-  @Input() users: any[];
-
   lat: number = 51.678418;
   lng: number = 7.809007;
-
-  constructor() { }
+  sport_name: any;
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private searchService: SearchService
+  ) {}
 
   ngOnInit() {
-    console.log(this.users);
+    this.route.params.subscribe(params => {
+      const search = {
+        sport_name: params['sport'],
+        experience: params['location'],
+        location: params['experience']
+      }
+console.log(search);
+      this.searchService.findOpponents(search).subscribe(data => {
+        if(data.success) {
+          console.log(data);
+        } else {
+          console.log('Something went wrong. Please try again later.');
+        }
+      });
+    });
   }
-
-
-
 }

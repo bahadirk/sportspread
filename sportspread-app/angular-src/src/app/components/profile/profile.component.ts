@@ -3,7 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { ValidateService } from '../../services/validate.service';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import {  FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
