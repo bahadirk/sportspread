@@ -11,9 +11,17 @@
         </div>
       </div>
     </div>
-    <input placeholder="Name" [(ngModel)]="name" name="name" type="text" class="form-control">
+    <input placeholder="Name" *ngIf="accountType === 'Personal'" [(ngModel)]="name" name="name" type="text" class="form-control">
+    <input placeholder="Sports Name" *ngIf="accountType === 'Team'" [(ngModel)]="sport_name" name="sport_name" type="text" class="form-control">
+    <select *ngIf="accountType === 'Team'" class="form-control dropdown" name="level" [(ngModel)]="level">
+      <option disabled>Experience</option>
+      <option value="Beginner">Beginner</option>
+      <option value="Medium">Medium</option>
+      <option value="Advanced">Advanced</option>
+      <option value="Professional">Professional</option>
+    </select>
     <input placeholder="Username" [(ngModel)]="username" name="username" type="text" class="form-control">
-    <input placeholder="Email" [(ngModel)]="email" name="email" type="email" class="form-control">
+    <input placeholder="Email" *ngIf="accountType === 'Personal'" [(ngModel)]="email" name="email" type="email" class="form-control">
     <input [(ngModel)]="password" name="password" type="password" placeholder="Password" class="form-control" required="">
     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
   </form>

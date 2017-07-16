@@ -7,12 +7,73 @@ const config = require('../config/database');
 const multer = require('multer');
 
 const User = require('../models/users');
-
+const Team = require('../models/team');
 const DIR = './src/assets/profile_photos';
 
 var upload = multer({dest: DIR}).single('photo');
 
-// Register
+
+// Register Team
+router.post('/registerteam', (req, res, next) => {
+    console.log(req.body);
+
+    let newTeam = new Team({
+        sport_name: req.body.sport_name,
+        teamname: req.body.teamname,
+        password: req.body.password,
+        level: req.body.level
+    });
+
+    Team.addTeam(newTeam, (err) => {
+        if(err) {
+            res.json({success: false, msg: 'Failed to register team'});
+        } else {
+            res.json({success: true, msg: 'Team registered'});
+        }
+    });
+});
+
+// Authenticate Team
+router.post('/authenticateteam', (req, res, next) => {
+    const teamname = req.body.teamname;
+    const password = req.body.password;
+
+    Team.getTeamByTeamname(teamname, (err, team) => {
+        if(err) throw err;
+
+        if(!team) {
+            res.json({success: false, msg: 'User not found'});
+        }
+
+        if(!team.password) {
+            res.json({success: false, msg: 'User not found'});
+        }
+
+        User.comparePassword(password, team.password, (err, isMatch) => {
+            if(err) throw err;
+            if(isMatch) {
+                const token = jwy.sign(team,config.secret, {
+                    expiresIn: 604800 // 1 week
+                });
+
+                res.json({
+                    success: true,
+                    token: 'JWT ' +token,
+                    team: {
+                        id: team._id,
+                        sport_name: team.sport_name,
+                        teamname: team.teamname,
+                        email: team.email
+                    }
+                });
+            } else {
+                res.json({success: false, msg: 'Wrong password'});
+            }
+        });
+    });
+});
+
+// Register Personal User
 router.post('/register', (req, res, next) => {
     "use strict";
     let newUser = new User({

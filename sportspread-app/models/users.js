@@ -8,12 +8,10 @@ const UserSchema = mongoose.Schema({
         type: String
     },
     type_account: {
-        type: String,
-        required: true
+        type: String
     },
     is_instructor: {
-        type: Boolean,
-        required: true
+        type: Boolean
     },
     location: {
         type: String

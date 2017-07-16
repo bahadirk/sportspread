@@ -24,7 +24,6 @@ mongoose.connection.on('error', (err) => {
 const app = express();
 
 const users = require('./routes/users');
-const home = require('./routes/home');
 
 // Port Number
 const port = 3000;

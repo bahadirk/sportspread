@@ -11,6 +11,8 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class RegisterComponent implements OnInit {
 
+  sport_name: String;
+  level: String;
   name: String;
   username: String;
   email: String;
@@ -66,22 +68,27 @@ export class RegisterComponent implements OnInit {
       }
       case "Team": {
         const team = {
-          name: this.name,
-          username: this.username,
-          email: this.email,
-          password: this.password
+          sport_name: this.sport_name,
+          teamname: this.username,
+          level: this.level,
+          password: this.password,
+          users: []
         }
         // Required Fields
-        if(!this.validateService.validateTeamRegister(team)) {
+       /* if(!this.validateService.validateTeamRegister(team)) {
           this.flashMessagesModule.show('Please fill in all fields.', {cssClass: 'alert-danger', timeout: 3000});
           return false;
-        }
+        }*/
 
-        // Validate Email
-        if(!this.validateService.validateEmail(team.email)) {
-          this.flashMessagesModule.show('Please use a valid email.', {cssClass: 'alert-danger', timeout: 3000});
-          return false;
-        }
+        // Register Team
+        this.authService.registerTeam(team).subscribe(data => {
+          if(data.success) {
+            this.flashMessagesModule.show('You are now registered. Please log in.', {cssClass: 'alert-success', timeout: 3000});
+            this.router.navigate(['/login']);
+          } else {
+            this.flashMessagesModule.show('Something went wrong. Please try again later.', {cssClass: 'alert-danger', timeout: 3000});
+          }
+        });
         break;
       }
     }

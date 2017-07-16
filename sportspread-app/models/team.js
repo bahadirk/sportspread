@@ -1,23 +1,19 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const config = require('../config/database');
-const User = require('../models/user');
+const User = require('../models/users');
 
 const TeamSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    type_account: {
+    sport_name: {
         type: String,
         required: true
     },
     teamname: {
-        type: String
-    },
-    type_account: {
         type: String,
         required: true
+    },
+    type_account: {
+        type: String
     },
     location: {
         type: String
@@ -30,7 +26,9 @@ const TeamSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    members:[User]
+    members:{
+        User: []
+    }
 });
 
 const Team = module.exports = mongoose.model('Team', TeamSchema);
@@ -43,6 +41,11 @@ module.exports.addTeam = function(newTeam, callback) {
             newTeam.save(callback);
         })
     });
+}
+
+module.exports.getTeamByTeamname = function(teamname, callback) {
+    const query = {teamname: teamname};
+    Team.findOne(query, callback);
 }
 
 module.exports.comparePassword = function(candidatePassword, hash, callback) {
