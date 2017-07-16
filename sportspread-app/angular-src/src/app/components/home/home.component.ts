@@ -15,12 +15,15 @@ export class HomeComponent implements OnInit {
   location: String = "";
   experience: String = "";
   searchType = "Teammate";
+  type_account: any;
 
   constructor(private searchService: SearchService,
               private router: Router
   ) { }
 
   ngOnInit() {
+    this.type_account = localStorage.getItem('profile');
+    this.type_account = JSON.parse(this.type_account);
   }
 
   changeSearchType(type) {
@@ -28,6 +31,6 @@ export class HomeComponent implements OnInit {
   }
 
   onSearchSubmit() {
-    this.router.navigate(['/search', this.searchType, this.sport_name, this.experience, this.location]);
+    this.router.navigate(['/search', this.searchType, this.sport_name, this.location, this.experience]);
   }
 }

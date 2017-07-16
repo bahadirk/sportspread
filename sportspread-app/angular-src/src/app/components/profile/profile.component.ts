@@ -124,7 +124,7 @@ export class ProfileComponent implements OnInit {
     }
 
     // Required Fields
-    if(!this.validateService.validateRegister(this.user)) {
+    if(!this.validateService.validatePersonalRegister(this.user)) {
       this.flashMessagesModule.show('Please fill in all fields.', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }

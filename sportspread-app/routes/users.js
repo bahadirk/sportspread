@@ -21,7 +21,8 @@ router.post('/registerteam', (req, res, next) => {
         sport_name: req.body.sport_name,
         teamname: req.body.teamname,
         password: req.body.password,
-        level: req.body.level
+        level: req.body.level,
+        type_account: "team"
     });
 
     Team.addTeam(newTeam, (err) => {
@@ -42,14 +43,14 @@ router.post('/authenticateteam', (req, res, next) => {
         if(err) throw err;
 
         if(!team) {
-            res.json({success: false, msg: 'User not found'});
+            res.json({success: false, msg: 'Team not found'});
         }
 
         if(!team.password) {
-            res.json({success: false, msg: 'User not found'});
+            res.json({success: false, msg: 'Team not found'});
         }
 
-        User.comparePassword(password, team.password, (err, isMatch) => {
+        Team.comparePassword(password, team.password, (err, isMatch) => {
             if(err) throw err;
             if(isMatch) {
                 const token = jwy.sign(team,config.secret, {
@@ -63,7 +64,7 @@ router.post('/authenticateteam', (req, res, next) => {
                         id: team._id,
                         sport_name: team.sport_name,
                         teamname: team.teamname,
-                        email: team.email
+                        type_account: team.type_account
                     }
                 });
             } else {
@@ -80,7 +81,8 @@ router.post('/register', (req, res, next) => {
         name: req.body.name,
         email: req.body.email,
         username: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        type_account: "user"
     });
 
     User.addUser(newUser, (err) => {

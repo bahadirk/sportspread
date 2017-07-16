@@ -59,14 +59,14 @@ export class AuthService {
 
   storeUserData(token, user) {
     localStorage.setItem('id_token', token);
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('profile', JSON.stringify(user));
     this.authToken = token;
     this.user = user;
   }
 
   storeTeamData(token, team) {
     localStorage.setItem('id_token', token);
-    localStorage.setItem('team', JSON.stringify(team));
+    localStorage.setItem('profile', JSON.stringify(team));
     this.authToken = token;
     this.team = team;
   }
