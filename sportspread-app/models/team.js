@@ -71,7 +71,7 @@ module.exports.findOpponentBySearch = function(search, callback) {
         level: search.experience
     };
     console.log(query);
-    User.find(query, callback);
+    Team.find(query, callback);
 }
 
 

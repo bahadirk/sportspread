@@ -186,7 +186,7 @@ router.post('/teammates', (req, res, next) => {
 
 //Search Opponents
 router.post('/opponents', (req, res, next) => {
-    console.log(req.body);
+    console.log("USER ROUTER " + req.body);
     User.findOpponentsBySearch(req.body, (err, users) => {
         if(err) {
             res.json({success: false, msg: 'Something went wrong in search.'});
@@ -210,7 +210,7 @@ router.post('/instructors', (req, res, next) => {
 });
 
 router.post('/opponentteam', (req, res, next) => {
-    console.log(req.body);
+    console.log("OPPON Te" +req.body);
     Team.findOpponentBySearch(req.body, (err, users) => {
         if(err) {
             res.json({success: false, msg: 'Something went wrong in search.'});
