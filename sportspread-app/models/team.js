@@ -8,6 +8,10 @@ const TeamSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    type_account: {
+        type: String,
+        required: true
+    },
     teamname: {
         type: String
     },
