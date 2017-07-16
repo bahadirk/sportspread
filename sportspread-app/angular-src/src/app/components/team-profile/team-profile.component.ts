@@ -38,15 +38,15 @@ export class TeamProfileComponent implements OnInit {
     this.authService.getTeamProfile().subscribe(profile => {
         this.team = profile.team;
   console.log(this.team);
-        /*
-        this.team.interests.forEach(item => {
+
+        this.team.members.forEach(item => {
           let newGroup = this.fb.group({
             name: [item.name, [Validators.required]],
-            level: [item.level, [Validators.required]]
+            email: [item.email, [Validators.required]]
           });
           arrayControl.push(newGroup);
         });
-*/
+
         this.myForm = newForm;
       },
       err => {
@@ -54,15 +54,24 @@ export class TeamProfileComponent implements OnInit {
         return false;
       });
   }
+  deleteInput(index: number): void {
+    const arrayControl = <FormArray>this.myForm.controls['formArray'];
+    arrayControl.removeAt(index);
+  }
 
+  onSubmit(): void {
+    console.log(this.myForm.value);
+    // Your form value is outputted as a JavaScript object.
+    // Parse it as JSON or take the values necessary to use as you like
+  }
 
   onProfileSubmit(){
-    //this.user.interests = [];
-    /*
+    this.team.members = [];
+
     this.myForm.value.formArray.forEach(item => {
-      this.team.interests.push(item);
+      this.team.members.push(item);
     });
-*/
+
     if(this.password != undefined || this.passwordRepeat != undefined) {
       if(this.password == this.passwordRepeat) {
         this.team.password = this.password;

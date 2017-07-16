@@ -24,6 +24,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { InterestComponent } from './components/interest/interest.component';
 import { UserCellComponent } from './components/user-cell/user-cell.component';
 import { TeamProfileComponent } from './components/team-profile/team-profile.component';
+import { MemberComponent } from './components/member/member.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -50,7 +51,8 @@ const appRoutes: Routes = [
     InterestComponent,
     FileSelectDirective,
     UserCellComponent,
-    TeamProfileComponent
+    TeamProfileComponent,
+    MemberComponent
   ],
   imports: [
     BrowserModule,
