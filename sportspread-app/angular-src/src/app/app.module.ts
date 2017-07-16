@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -29,11 +30,7 @@ const appRoutes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
-  //{path: 'search', component: SearchResultComponent, canActivate:[AuthGuard]}
-  {
-    path: 'search/:searchType/:sport/:location/:experience',
-    component: SearchResultComponent
-  }
+  {path: 'search/:searchType/:sport/:location/:experience', component: SearchResultComponent}
 ];
 
 @NgModule({
@@ -47,17 +44,20 @@ const appRoutes: Routes = [
     ProfileComponent,
     FooterComponent,
     SearchResultComponent,
-    InterestComponent
+    InterestComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    JsonpModule,
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyB5oqtbEdUtP1TmVDXf3PWEwUh05x7R6uc'
+      apiKey: 'AIzaSyB5oqtbEdUtP1TmVDXf3PWEwUh05x7R6uc',
+      libraries: ["places"]
     })
   ],
   providers: [ValidateService, AuthService, AuthGuard, SearchService],

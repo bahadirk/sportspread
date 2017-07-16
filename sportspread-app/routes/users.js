@@ -4,8 +4,13 @@ const router = express.Router();
 const passport = require('passport');
 const jwy = require('jsonwebtoken');
 const config = require('../config/database');
+const multer = require('multer');
 
 const User = require('../models/users');
+
+const DIR = './src/assets/profile_photos';
+
+var upload = multer({dest: DIR}).single('photo');
 
 // Register
 router.post('/register', (req, res, next) => {
@@ -74,6 +79,19 @@ router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res
 
 // Update Profile
 router.post('/editprofile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+
+    var path = '';
+
+    upload(req, res, function (err) {
+        if (err) {
+            // An error occurred when uploading
+            console.log(err);
+            return res.status(422).send("an Error occured")
+        }
+        // No error occured.
+        path = req.file.path;
+    });
+
     User.updateUser(req.body, (err) => {
         if(err) {
             res.json({success: false, msg: 'Failed to update user'});

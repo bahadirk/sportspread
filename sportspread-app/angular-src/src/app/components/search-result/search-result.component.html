@@ -1,24 +1,2 @@
-<div class="jumbotron carousel">
-  <div class="container text-center">
-    <h1>Select a Teammate</h1>
-   	<div class="form-group col-xs-6">
-        <label for="sport"></label>
-        <ul class="users">
-        	<li *ngFor="let user of users" >
-          <ul>{{user.name}}</ul>
-        </ul>
-     </div>
-
-      <div class="form-group col-xs-6">
-        <label for="location"></label>
-        <input type="text" class="form-control" id="location" placeholder="Location, eg. Munich">
-      </div>
-   </div>
+<div class="container">
 </div>
-
-<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map>
-
-
-

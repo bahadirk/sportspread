@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SearchService } from '../../services/search.service';
+import {} from '@types/googlemaps';
 
 @Component({
   selector: 'app-search-result',
@@ -8,20 +9,17 @@ import { SearchService } from '../../services/search.service';
   styleUrls: ['./search-result.component.css']
 })
 
-
 export class SearchResultComponent implements OnInit {
+   searchType: any
 
-  lat: number = 51.678418;
-  lng: number = 7.809007;
-  sport_name: any;
-  searchType: any;
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private searchService: SearchService
-  ) {}
+   constructor(
+     private route: ActivatedRoute,
+     private router: Router,
+     private searchService: SearchService
+   ) {}
 
   ngOnInit() {
+
     this.route.params.subscribe(params => {
       this.searchType = params['searchType'];
       const search = {
@@ -33,7 +31,7 @@ export class SearchResultComponent implements OnInit {
       switch (this.searchType) {
         case "Teammate": {
           this.searchService.findTeammates(search).subscribe(data => {
-            if(data.success) {
+            if (data.success) {
               console.log(data);
             } else {
               console.log('Something went wrong. Please try again later.');
@@ -43,7 +41,7 @@ export class SearchResultComponent implements OnInit {
         }
         case "Opponent": {
           this.searchService.findOpponents(search).subscribe(data => {
-            if(data.success) {
+            if (data.success) {
               console.log(data);
             } else {
               console.log('Something went wrong. Please try again later.');

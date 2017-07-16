@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   searchType = "Teammate";
 
   constructor(private searchService: SearchService,
-              private router: Router,
+              private router: Router
   ) { }
 
   ngOnInit() {
@@ -27,8 +27,7 @@ export class HomeComponent implements OnInit {
     this.searchType = type;
   }
 
-  onSearchSubmit(){
+  onSearchSubmit() {
     this.router.navigate(['/search', this.searchType, this.sport_name, this.experience, this.location]);
-
   }
 }
