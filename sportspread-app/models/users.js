@@ -90,6 +90,7 @@ module.exports.findInstructorsBySearch = function(search, callback) {
     User.find(query, callback);
 }
 
+
 module.exports.getUserByUsername = function(username, callback) {
     const query = {username: username};
     User.findOne(query, callback);

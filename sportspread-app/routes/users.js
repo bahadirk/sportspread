@@ -184,6 +184,21 @@ router.post('/teammates', (req, res, next) => {
     });
 });
 
+
+//Search Teammates
+router.post('/teammembers', (req, res, next) => {
+    console.log(req.body);
+    User.findTeammatesBySearch(req.body, (err, users) => {
+        if(err) {
+            res.json({success: false, msg: 'Something went wrong in search.'});
+        } else {
+            res.json({success:true, users: users});
+        }
+    });
+});
+
+
+
 //Search Opponents
 router.post('/opponents', (req, res, next) => {
     console.log("USER ROUTER " + req.body);
