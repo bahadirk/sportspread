@@ -1,6 +1,17 @@
-<div class="col-lg-4">
-  <img class="img-circle" src="" alt="Generic placeholder image" width="140" height="140">
-  <h2>{{ user.name }}</h2>
-  <p>{{ user.location }}</p>
-  <p>{{ user.email }}</p>
+<div class="col-lg-3 col-sm-6">
+  <div class="card hovercard">
+    <div class="cardheader">
+    </div>
+    <div class="avatar">
+      <img alt="" src="http://lorempixel.com/100/100/people/9/">
+    </div>
+    <div class="info">
+      <div class="title">
+        {{ user.name }}
+      </div>
+      <div class="desc">{{ user.location }}</div>
+      <div class="desc">{{ user.email }}</div>
+      <div class="desc">{{ user.username }}</div>
+    </div>
+  </div>
 </div>
