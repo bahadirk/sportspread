@@ -5,8 +5,16 @@ export class ValidateService {
 
   constructor() { }
 
-  validateRegister(user){
+  validatePersonalRegister(user){
     if(user.name == undefined || user.username == undefined || user.email == undefined || user.password == undefined) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  validateTeamRegister(team){
+    if(team.name == undefined || team.username == undefined || team.email == undefined || team.password == undefined) {
       return false;
     } else {
       return true;

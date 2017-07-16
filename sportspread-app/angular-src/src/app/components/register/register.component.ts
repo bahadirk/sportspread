@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   username: String;
   email: String;
   password: String;
+  accountType = "Personal";
 
   constructor(private validateService: ValidateService,
               private authService: AuthService,
@@ -25,36 +26,65 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  changeAccountType(type) {
+    this.accountType = type;
+  }
+
   onRegisterSubmit(){
-    const user = {
-      name: this.name,
-      username: this.username,
-      email: this.email,
-      password: this.password
-    }
 
-      // Required Fields
-      if(!this.validateService.validateRegister(user)) {
-        this.flashMessagesModule.show('Please fill in all fields.', {cssClass: 'alert-danger', timeout: 3000});
-        return false;
+    switch(this.accountType) {
+      case "Personal": {
+        const user = {
+          name: this.name,
+          username: this.username,
+          email: this.email,
+          password: this.password
+        }
+
+        // Required Fields
+        if(!this.validateService.validatePersonalRegister(user)) {
+          this.flashMessagesModule.show('Please fill in all fields.', {cssClass: 'alert-danger', timeout: 3000});
+          return false;
+        }
+
+        // Validate Email
+        if(!this.validateService.validateEmail(user.email)) {
+          this.flashMessagesModule.show('Please use a valid email.', {cssClass: 'alert-danger', timeout: 3000});
+          return false;
+        }
+
+        // Register User
+        this.authService.registerUser(user).subscribe(data => {
+          if(data.success) {
+            this.flashMessagesModule.show('You are now registered. Please log in.', {cssClass: 'alert-success', timeout: 3000});
+            this.router.navigate(['/login']);
+          } else {
+            this.flashMessagesModule.show('Something went wrong. Please try again later.', {cssClass: 'alert-danger', timeout: 3000});
+          }
+        });
+        break;
       }
+      case "Team": {
+        const team = {
+          name: this.name,
+          username: this.username,
+          email: this.email,
+          password: this.password
+        }
+        // Required Fields
+        if(!this.validateService.validateTeamRegister(team)) {
+          this.flashMessagesModule.show('Please fill in all fields.', {cssClass: 'alert-danger', timeout: 3000});
+          return false;
+        }
 
-    // Validate Email
-    if(!this.validateService.validateEmail(user.email)) {
-      this.flashMessagesModule.show('Please use a valid email.', {cssClass: 'alert-danger', timeout: 3000});
-      return false;
-    }
-
-    // Register User
-    this.authService.registerUser(user).subscribe(data => {
-      if(data.success) {
-        this.flashMessagesModule.show('You are now registered. Please log in.', {cssClass: 'alert-success', timeout: 3000});
-        this.router.navigate(['/login']);
-      } else {
-        this.flashMessagesModule.show('Something went wrong. Please try again later.', {cssClass: 'alert-danger', timeout: 3000});
+        // Validate Email
+        if(!this.validateService.validateEmail(team.email)) {
+          this.flashMessagesModule.show('Please use a valid email.', {cssClass: 'alert-danger', timeout: 3000});
+          return false;
+        }
+        break;
       }
-    });
-
+    }
   }
 
 }
