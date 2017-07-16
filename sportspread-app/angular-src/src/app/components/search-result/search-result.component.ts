@@ -25,8 +25,8 @@ export class SearchResultComponent implements OnInit {
       this.searchType = params['searchType'];
       const search = {
         sport_name: params['sport'],
-        experience: params['location'],
-        location: params['experience']
+        experience: params['experience'],
+        location: params['location']
       }
 
       switch (this.searchType) {
@@ -45,6 +45,17 @@ export class SearchResultComponent implements OnInit {
           this.searchService.findOpponents(search).subscribe(data => {
             if (data.success) {
               console.log(data);
+              this.users = data.users;
+            } else {
+              console.log('Something went wrong. Please try again later.');
+            }
+          });
+          break;
+        }
+        case "Instructor": {
+          console.log(search);
+          this.searchService.findInstructors(search).subscribe(data => {
+            if (data.success) {
               this.users = data.users;
             } else {
               console.log('Something went wrong. Please try again later.');

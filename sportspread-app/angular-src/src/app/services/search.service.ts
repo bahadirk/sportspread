@@ -28,6 +28,15 @@ export class SearchService {
       .map(res => res.json());
   }
 
+  findInstructors(search) {
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/users/instructors', search, {headers: headers})
+      .map(res => res.json());
+  }
+
   loadToken() {
     const token = localStorage.getItem('id_token');
     this.authToken = token;

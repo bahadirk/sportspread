@@ -79,6 +79,17 @@ module.exports.findOpponentsBySearch = function(search, callback) {
     User.find(query, callback);
 }
 
+
+module.exports.findInstructorsBySearch = function(search, callback) {
+    const query = {
+        location: search.location,
+        is_instructor: true,
+        sports_prof: search.sport_name,
+    };
+    console.log(query);
+    User.find(query, callback);
+}
+
 module.exports.getUserByUsername = function(username, callback) {
     const query = {username: username};
     User.findOne(query, callback);

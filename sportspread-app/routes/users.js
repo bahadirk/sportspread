@@ -190,4 +190,18 @@ router.post('/opponents', (req, res, next) => {
     });
 });
 
+
+//Search Instructors
+router.post('/instructors', (req, res, next) => {
+    console.log(req.body);
+    User.findInstructorsBySearch(req.body, (err, users) => {
+        if(err) {
+            res.json({success: false, msg: 'Something went wrong in search.'});
+        } else {
+            res.json({success:true, users: users});
+        }
+    });
+});
+
+
 module.exports = router;
