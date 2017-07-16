@@ -22,6 +22,7 @@ import { AuthService } from './services/auth.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
 import { InterestComponent } from './components/interest/interest.component';
+import { UserCellComponent } from './components/user-cell/user-cell.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
     FooterComponent,
     SearchResultComponent,
     InterestComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    UserCellComponent
   ],
   imports: [
     BrowserModule,

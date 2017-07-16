@@ -10,7 +10,8 @@ import {} from '@types/googlemaps';
 })
 
 export class SearchResultComponent implements OnInit {
-   searchType: any
+   searchType: any;
+   users: [any];
 
    constructor(
      private route: ActivatedRoute,
@@ -33,6 +34,7 @@ export class SearchResultComponent implements OnInit {
           this.searchService.findTeammates(search).subscribe(data => {
             if (data.success) {
               console.log(data);
+              this.users = data.users;
             } else {
               console.log('Something went wrong. Please try again later.');
             }
@@ -43,6 +45,7 @@ export class SearchResultComponent implements OnInit {
           this.searchService.findOpponents(search).subscribe(data => {
             if (data.success) {
               console.log(data);
+              this.users = data.users;
             } else {
               console.log('Something went wrong. Please try again later.');
             }
