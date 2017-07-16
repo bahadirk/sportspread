@@ -42,6 +42,20 @@ module.exports.getUserById = function(id, callback) {
     User.findById(id, callback);
 }
 
+module.exports.findTeammatesBySearch = function(search, callback) {
+    const query = {
+        location: search.location,
+        interests: {
+            $elemMatch: {
+                name: search.sport_name,
+                level: search.experience
+            }
+        }
+    };
+    console.log(query);
+    User.find(query, callback);
+}
+
 module.exports.findOpponentsBySearch = function(search, callback) {
     const query = {
         location: search.location,

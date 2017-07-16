@@ -31,7 +31,7 @@ const appRoutes: Routes = [
   {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
   //{path: 'search', component: SearchResultComponent, canActivate:[AuthGuard]}
   {
-    path: 'search/:sport/:location/:experience',
+    path: 'search/:searchType/:sport/:location/:experience',
     component: SearchResultComponent
   }
 ];

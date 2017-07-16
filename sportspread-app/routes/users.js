@@ -83,7 +83,19 @@ router.post('/editprofile', passport.authenticate('jwt', {session: false}), (req
     });
 });
 
-//Search
+//Search Teammates
+router.post('/teammates', (req, res, next) => {
+    console.log(req.body);
+    User.findTeammatesBySearch(req.body, (err, users) => {
+        if(err) {
+            res.json({success: false, msg: 'Something went wrong in search.'});
+        } else {
+            res.json({success:true, users: users});
+        }
+    });
+});
+
+//Search Opponents
 router.post('/opponents', (req, res, next) => {
     console.log(req.body);
     User.findOpponentsBySearch(req.body, (err, users) => {

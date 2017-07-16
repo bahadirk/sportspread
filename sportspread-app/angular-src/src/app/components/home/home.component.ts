@@ -11,10 +11,10 @@ import { SearchService } from '../../services/search.service';
 
 export class HomeComponent implements OnInit {
 
-  sport_name : String;
-  location: String;
-  experience: String;
-  searchType = "teammate";
+  sport_name : String = "";
+  location: String = "";
+  experience: String = "";
+  searchType = "Teammate";
 
   constructor(private searchService: SearchService,
               private router: Router,
@@ -28,10 +28,7 @@ export class HomeComponent implements OnInit {
   }
 
   onSearchSubmit(){
-    const sport = this.sport_name;
-    const location = this.location;
-    const experience = this.experience;
-    this.router.navigate(['/search', sport, experience, location]);
+    this.router.navigate(['/search', this.searchType, this.sport_name, this.experience, this.location]);
 
   }
 }

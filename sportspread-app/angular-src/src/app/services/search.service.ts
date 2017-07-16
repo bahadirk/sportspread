@@ -10,6 +10,15 @@ export class SearchService {
 
   constructor(private http: Http) { }
 
+  findTeammates(search) {
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/users/teammates', search, {headers: headers})
+      .map(res => res.json());
+  }
+
   findOpponents(search) {
     let headers = new Headers();
     this.loadToken();
