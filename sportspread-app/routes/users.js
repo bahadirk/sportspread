@@ -81,7 +81,7 @@ router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res
 router.post('/editprofile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
 
     var path = '';
-
+/*
     upload(req, res, function (err) {
         if (err) {
             // An error occurred when uploading
@@ -91,7 +91,7 @@ router.post('/editprofile', passport.authenticate('jwt', {session: false}), (req
         // No error occured.
         path = req.file.path;
     });
-
+*/
     User.updateUser(req.body, (err) => {
         if(err) {
             res.json({success: false, msg: 'Failed to update user'});
